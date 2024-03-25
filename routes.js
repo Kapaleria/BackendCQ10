@@ -74,7 +74,15 @@ router.patch('/journal/:journalID', async(req,res)=>{
     }
 })
 
+//HTTP methods //HTTPS
 
+//GET method - Retrive data from the database
+//POST method - Send data to the server/database
+//HEAD method - its like GET but without a body
+//PUT method - updating data
+//DELETE method - deletes a specific resource
+//PATCH method - applies partial modifications
+//OPTIONS method - describes the comms. options
 
 
 module.exports= router;
