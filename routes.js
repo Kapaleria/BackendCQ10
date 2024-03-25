@@ -58,5 +58,23 @@ router.delete('/journal/:journalID', async(req,res)=>{
 })
 
 
+//PATCH method
+router.patch('/journal/:journalID', async(req,res)=>{
+    try{
+        const updatedJournal = await Journal.updateOne(
+            {_id:req.params.journalID},
+            {$set:{title:req.body.title}
+      
+        }
+        )
+        res.json(updatedJournal)
+    }
+    catch(err){
+        res.json({msg:err.message})
+    }
+})
+
+
+
 
 module.exports= router;
