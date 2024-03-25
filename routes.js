@@ -31,6 +31,19 @@ router.get('/journals', async(req,res)=>{
     }
 })
 
+//GET method by id
+router.get('/journal/:journalID', async(req,res)=>{
+    try{
+        //const specificJournal= await Journal.findById(req.params.journalID)
+        const specificJournal = await Journal.findById({_id:req.params.journalID})
+        res.json(specificJournal)
+    }
+    catch(err){
+        res.status(200).json({msg:err.message})
+    }
+})
+
+
 
 
 module.exports= router;
