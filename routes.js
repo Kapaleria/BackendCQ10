@@ -20,6 +20,17 @@ router.post('/journal', async(req,res)=>{
 
 })
 
+//GET method
+router.get('/journals', async(req,res)=>{
+    try{
+        const allJournals= await Journal.find()
+        res.json(allJournals)
+    }
+    catch(err){
+        res.status(200).json({msg:err.message})
+    }
+})
+
 
 
 module.exports= router;
