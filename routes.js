@@ -43,6 +43,19 @@ router.get('/journal/:journalID', async(req,res)=>{
     }
 })
 
+//DELETE method
+router.delete('/journal/:journalID', async(req,res)=>{
+    try{
+        const removedJournal = await Journal.deleteOne({
+        _id:req.params.journalID
+        //parameters
+    });
+    res.json(removedJournal)
+}
+    catch(err){
+        res.json({msg:err.message})
+    }
+})
 
 
 
