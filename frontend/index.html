@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <!-- <script src="./index.js"></script> -->
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <h2>Journal Form</h2>
+    <form id="journalForm">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="notes">Notes:</label><br>
+        <textarea id="notes" name="notes"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('journalForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const title = document.getElementById('title').value;
+    const notes = document.getElementById('notes').value;
+    
+    // const response = await fetch('/api/journal', {
+        const response = await fetch('/journal', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, notes })
+    });
+
+    if (response.ok) {
+        
+        window.location.href = './journals.html'; // Redirect to the next page
+    } else {
+        console.error('Failed to submit journal:', response.statusText);
+    }
+});
+    </script>
+
+</body>
+</html>
