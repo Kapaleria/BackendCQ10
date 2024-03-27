@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All journals</title>
+</head>
+<body>
+    <h2>Journal Entries</h2>
+    <div id="journalEntries"></div>
+
+    <script>
+        async function fetchJournals() {
+            const response = await fetch('/journals');
+            if (!response.ok) {
+                console.error('Failed to fetch journals:', response.statusText);
+                return;
+            }
+            const journals = await response.json();
+            const journalEntries = document.getElementById('journalEntries');
+            journalEntries.innerHTML = ''; // Clear previous entries
+
+            journals.forEach(journal => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <h3>${journal.title}</h3>
+                    <p>${journal.notes}</p>
+                `;
+                journalEntries.appendChild(card);
+            });
+        }
+
+        fetchJournals();
+    </script>
+</body>
+</html>
