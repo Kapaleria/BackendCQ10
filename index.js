@@ -2,11 +2,13 @@
 const express =require('express')
 const mongoose =require('mongoose')
 const bodyParser=require('body-parser')
+const cors = require('cors')
 const app = express();
 require('dotenv/config') //security purposes
 
 const routes=require('./routes')
 app.use(bodyParser.json())
+app.use(cors())
 app.use('/', routes)
 
 //CONNECT TO THE DATABASE
